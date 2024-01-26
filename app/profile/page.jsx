@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import Profile from '@components/Profile'
 import React from 'react'
 
-const profile = () => {
+const Myprofile = () => {
 const router = useRouter()
   const {data:session} = useSession();
   const [posts,setPosts] = useState([]);
@@ -46,4 +46,4 @@ const router = useRouter()
   )
 }
 
-export default profile
+export default Myprofile
