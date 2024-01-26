@@ -1,6 +1,6 @@
 import { connectToDB } from "@utils/database"
 import Prompt from "@models/PromptSchema";
-import { request } from "http";
+                                                
 
 export const GET = async (request) => {
    try{
