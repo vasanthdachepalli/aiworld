@@ -23,7 +23,7 @@ const Feed = () => {
     const response = await fetch('/api/prompt');
     const data = await response.json()
     setPosts(data);
-    const filteredPosts = data.filter((p) => p.creator.includes(searchText) | p.tag.includes(searchText) | p.prompt.includes(searchText))
+    const filteredPosts = data.filter((p) => p.creator.includes(searchText) || p.tag.includes(searchText) || p.prompt.includes(searchText))
   console.log(filteredPosts);
   setPosts(filteredPosts);
      }
@@ -43,7 +43,7 @@ const Feed = () => {
     <form className='relative w-full flex-center'>
      <input type='text' placeholder='search for a tag or a username'
      value={searchText} onChange={handleSearchChange} required className='search_input peer'/>
-     {console.log(posts)}
+     
 
     </form>
     <PromptCardList data={posts} handleTagClick ={() =>{}} />
