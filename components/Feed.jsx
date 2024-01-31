@@ -17,13 +17,25 @@ const PromptCardList = ({data,handleTagClick}) =>{
 const Feed = () => {
   const [searchText, setsearchText] = useState('')
   const [posts,setPosts] = useState([])
+
+  const filterPosts = (data) => {
+    return data.filter(
+      (p) =>
+        p.creator.includes(searchText) ||
+        p.tag.includes(searchText) ||
+        p.prompt.includes(searchText)
+    );
+  };
+
+
  const handleSearchChange =(e)=> {
   setsearchText(e.target.value)
   const fetchPosts = async () =>{
     const response = await fetch('/api/prompt');
     const data = await response.json()
     setPosts(data);
-    const filteredPosts = data.filter((p) => p.creator.includes(searchText) || p.tag.includes(searchText) || p.prompt.includes(searchText))
+   // const filteredPosts = data.filter((p) => p.creator.includes(searchText) || p.tag.includes(searchText) || p.prompt.includes(searchText))
+   const filteredPosts = filterPosts(data);
   console.log(filteredPosts);
   setPosts(filteredPosts);
      }
