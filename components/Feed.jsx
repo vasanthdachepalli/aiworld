@@ -7,6 +7,7 @@ const PromptCardList = ({data,handleTagClick}) =>{
   return (
     <div className='mt-16 prompt_layout'>
       {data.map((post)=>(
+
         <PromptCard key={post._id} post={post} handleTagClick={handleTagClick} />
      ) )}
 
@@ -18,6 +19,15 @@ const Feed = () => {
   const [posts,setPosts] = useState([])
  const handleSearchChange =(e)=> {
   setsearchText(e.target.value)
+  const fetchPosts = async () =>{
+    const response = await fetch('/api/prompt');
+    const data = await response.json()
+    setPosts(data);
+    const filteredPosts = data.filter((p) => p.creator.includes(searchText) | p.tag.includes(searchText) | p.prompt.includes(searchText))
+  console.log(filteredPosts);
+  setPosts(filteredPosts);
+     }
+     fetchPosts();
  }
 
  useEffect(()=>{
